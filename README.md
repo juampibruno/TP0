@@ -1,0 +1,2 @@
+# sintaxis
+tp 0
