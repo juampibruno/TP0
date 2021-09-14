@@ -1,12 +1,5 @@
 #include "scanner.h"
 
-enum token
-{
-    FDT, //Fin de texto
-    SEP, //Separador
-    CAD  //Cadena
-};
-
 void mostrarToken(int token)
 {
     switch (token)
@@ -23,20 +16,23 @@ void mostrarToken(int token)
     }
 }
 
-void get_token()
+void get_token(char buffer[])
 {
     char caracter;
+    int i = 0;
     caracter = getchar();
-
     do
     {
+
         if (isspace(caracter) == 0) // Si es espacio me devuelve != 0
-        {
+        { 
             if (caracter == ',')
             {
                 mostrarToken(SEP);
                 putchar(caracter);
                 printf("\n");
+                buffer[i] = caracter;
+                i++;
                 caracter = getchar();
             }
             else
@@ -44,9 +40,13 @@ void get_token()
                 mostrarToken(CAD);
                 while (caracter != EOF && caracter != ',' && isspace(caracter) == 0)
                 {
+                    buffer[i] = caracter;
                     putchar(caracter);
+                    i++;
                     caracter = getchar();
                 }
+                buffer[i] = '\0'; // lo pongo para indicar que termina cadena de texto
+                i++;
                 printf("\n");
             }
         }

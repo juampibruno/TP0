@@ -2,11 +2,9 @@
 
 int main()
 {
-    get_token();
+    int const dim = 128;
+    char buffer[dim];
+    get_token(buffer);
+    
     return 0;
 }
-
-// enum
-//isspace
-// getchar
-// ungetc
